@@ -50,6 +50,15 @@
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
 	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Pages\ManageToDoPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	</ItemGroup>
+
+	<ProjectExtensions><VisualStudio><UserProperties XamarinHotReloadDebuggerTimeoutExceptionToDoMauiClientHideInfoBar="True" /></VisualStudio></ProjectExtensions>
 
 </Project>

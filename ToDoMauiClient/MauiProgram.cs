@@ -1,4 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
+using ToDoMauiClient.DataServices;
+using ToDoMauiClient.Pages;
 
 namespace ToDoMauiClient;
 
@@ -15,9 +17,9 @@ public static class MauiProgram
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
 			});
 
-#if DEBUG
-		builder.Logging.AddDebug();
-#endif
+
+		builder.Services.AddSingleton<IRestDataService, RestDataService>();
+		builder.Services.AddTransient<ManageToDoPage>();
 
 		return builder.Build();
 	}

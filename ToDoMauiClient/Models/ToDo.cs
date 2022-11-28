@@ -24,7 +24,7 @@ namespace ToDoMauiClient.Models
         }
 
 
-        string _todoname;
+        public string _todoname;
 
            public string ToDoName
         {
@@ -35,7 +35,7 @@ namespace ToDoMauiClient.Models
                     return;
 
                 _todoname = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(ToDoName)));
+                PropertyChanged? .Invoke(this, new PropertyChangedEventArgs(nameof(ToDoName)));
             }
         }
 

@@ -1,26 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Text;
 using System.Text.Json;
 using System.Diagnostics;
-using System.Threading.Tasks;
 using ToDoMauiClient.DataServices;
 using ToDoMauiClient.Models;
+using System.Collections;
+using System.Threading.Tasks;
+
 
 namespace ToDoMauiClient
 {
-    public class RestDataService : IRestDataService
+    class RestDataService : IRestDataService
     {
         private readonly HttpClient _httpClient;
         private readonly string _baseAddress;
         private readonly string _url;
         private readonly JsonSerializerOptions _jsonSerializerOptions;
 
-        public RestDataService() 
+       
+
+        public RestDataService()
         {
             _httpClient = new HttpClient();
-            _baseAddress = DeviceInfo.Platform == DevicePlatform.Android ? "http://10.0.2.2:5261" : "https://localhost:7151";
+            _baseAddress = DeviceInfo.Platform == DevicePlatform.Android ? "http://10.0.2.2:5176" : "https://localhost:7146";
             _url = $"{_baseAddress}/api";
 
             _jsonSerializerOptions = new JsonSerializerOptions
@@ -28,8 +29,6 @@ namespace ToDoMauiClient
                 PropertyNamingPolicy = JsonNamingPolicy.CamelCase
             };
         }
-
-
 
         public async Task AddToDoAsync(ToDo toDo)
         {
@@ -90,7 +89,7 @@ namespace ToDoMauiClient
             return;
         }
 
-        public async Task<List<ToDo>> GetAllToDosAysnc()
+        public async Task<List<ToDo>> AllToDosAsync()
         {
             List<ToDo> todos = new List<ToDo>();
 
@@ -106,7 +105,12 @@ namespace ToDoMauiClient
 
                 if (response.IsSuccessStatusCode)
                 {
-
+                    response.EnsureSuccessStatusCode();
+                    string responseBody = await response.Content.ReadAsStringAsync();
+                    List<ToDo> toDos = Newtonsoft.Json.JsonConvert.DeserializeObject<List<ToDo>>(responseBody);
+                    var model = toDos;
+                    todos = model;
+                    return todos;
                 }
                 else
                 {
