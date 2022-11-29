@@ -22,7 +22,7 @@ public partial class MainPage : ContentPage
     {
         base.OnAppearing();
 
-        collectionView.ItemsSource = await _dataService.AllToDosAsync();
+        //collectionView.ItemsSource = await _dataService.AllToDosAsync();
     }
 
     async void OnAddToDoClicked(object sender, EventArgs e)
