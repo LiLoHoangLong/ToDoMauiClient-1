@@ -1,0 +1,1 @@
+C:\Users\Long Nguyen\source\repos\ToDoMauiClient\ToDoMauiClient\ToDoMauiClient.csproj;x64
