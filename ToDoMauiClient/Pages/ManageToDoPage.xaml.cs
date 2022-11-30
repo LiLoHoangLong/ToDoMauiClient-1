@@ -1,67 +1,67 @@
-using ToDoMauiClient.DataServices;
-using ToDoMauiClient.Models;
-using System.Diagnostics;
+//using ToDoMauiClient.DataServices;
+//using ToDoMauiClient.Models;
+//using System.Diagnostics;
 
-namespace ToDoMauiClient.Pages;
+//namespace ToDoMauiClient.Pages;
 
-//2:52:17 / 3:23:17
+////2:52:17 / 3:23:17
 
-[QueryProperty(nameof(ToDo), "ToDo")]
-public partial class ManageToDoPage : ContentPage
-{
-    private readonly IRestDataService _dataService;
-	ToDo _toDo;
-	bool _isNew = true;
+//[QueryProperty(nameof(ToDo), "ToDo")]
+//public partial class ManageToDoPage : ContentPage
+//{
+//    private readonly IRestDataService _dataService;
+//	ToDo _toDo;
+//	bool _isNew = true;
 
-	public ToDo ToDo
-	{
-		get => _toDo;
-		set
-		{
-			_isNew = IsNew(value);
-			_toDo = value;
-			OnPropertyChanged();
-		}
-	}
+//	public ToDo ToDo
+//	{
+//		get => _toDo;
+//		set
+//		{
+//			_isNew = IsNew(value);
+//			_toDo = value;
+//			OnPropertyChanged();
+//		}
+//	}
 
-    public ManageToDoPage(IRestDataService dataService)
-	{
-		InitializeComponent();
+//    public ManageToDoPage(IRestDataService dataService)
+//	{
+//		InitializeComponent();
 
-		_dataService = dataService;
-		BindingContext = this;
-	}
+//		_dataService = dataService;
+//		BindingContext = this;
+//	}
 	
-	bool IsNew(ToDo toDo)
-	{
-		if (toDo.Id == 0)
-			return true;
-		return false;
-	}
-	async void OnSaveButtonClicked(object sender, EventArgs e)
-	{
-		if (_isNew)
-		{
-			Debug.WriteLine("---> Add new Item");
-			await _dataService.AddToDoAsync(ToDo);
-		}
-		else
-		{
-			Debug.WriteLine("---> Update an Item");
-			await _dataService.UpdateToDoAsync(ToDo);
-		}
-		await Shell.Current.GoToAsync("..");
-	}
+//	bool IsNew(ToDo toDo)
+//	{
+//		if (toDo.Id == 0)
+//			return true;
+//		return false;
+//	}
+//	async void OnSaveButtonClicked(object sender, EventArgs e)
+//	{
+//		if (_isNew)
+//		{
+//			Debug.WriteLine("---> Add new Item");
+//			await _dataService.AddToDoAsync(ToDo);
+//		}
+//		else
+//		{
+//			Debug.WriteLine("---> Update an Item");
+//			await _dataService.UpdateToDoAsync(ToDo);
+//		}
+//		await Shell.Current.GoToAsync("..");
+//	}
 
-	async void OnDeleteButtonClicked(object sender, EventArgs e)
-	{
-		await _dataService.DeleteToDoAsync(ToDo.Id);
-        await Shell.Current.GoToAsync("..");
-    }
+//	async void OnDeleteButtonClicked(object sender, EventArgs e)
+//	{
+//		await _dataService.DeleteToDoAsync(ToDo.Id);
+//        await Shell.Current.GoToAsync("..");
+//    }
 
-	async void OnCancelButtonClicked(object sender, EventArgs e)
-	{
-		await Shell.Current.GoToAsync("..");
-	}
+//	async void OnCancelButtonClicked(object sender, EventArgs e)
+//	{
+//		await Shell.Current.GoToAsync("..");
+//	}
 
-}
+//}

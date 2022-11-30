@@ -47,7 +47,7 @@
                     <Frame Padding="10" BorderColor="Transparent" CornerRadius="0">
                         <Grid ColumnDefinitions="0,*" ColumnSpacing="0">
                             <Image VerticalOptions="Center" HeightRequest="25" WidthRequest="25" />
-                            <handless:BorderlessEntry VerticalOptions="Center" Placeholder="Mobile Number" Grid.Column="1" />
+                            <handless:BorderlessEntry VerticalOptions="Center" Placeholder="Phone" Grid.Column="1" />
                         </Grid>
                     </Frame>
 
